@@ -41,7 +41,7 @@
 
 <body class="u-body u-xl-mode" data-lang="it">
   <section class="u-align-center u-clearfix u-image u-section-1" id="carousel_bad6" data-image-width="1440" data-image-height="1080">
-    <h2 class="u-align-center u-text u-text-default u-text-1">Aggiungi valutazione</h2>
+    <h2 class="u-align-center u-text u-text-default u-text-1">Aggiungi un utente</h2>
     <div class="u-form u-radius-20 u-white u-form-1">
       <form class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" source="email" name="form" style="padding: 23px;" id="form">
         <div class="u-form-group u-form-group-1">

@@ -27,7 +27,6 @@ class UserController extends Controller
     {
         try {
             $this->userModel->loadData($request->getBody());
-            //return json_encode($this->userModel->getEmail());
             if ($this->userModel->checkUser()) {
                 
                 $_SESSION['email'] = $this->userModel->getEmail();
@@ -41,9 +40,8 @@ class UserController extends Controller
             return json_encode("exception");;
         }
     }
-    public function logout(): void
+    public function logout(): mixed
     {
-        session_abort();
-        header("Location: home");
+        return json_encode(session_destroy());
     }
 }

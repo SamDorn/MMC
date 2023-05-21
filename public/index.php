@@ -21,11 +21,14 @@ $app->router->get('/', function(){
 });
 
 $app->router->get('/home', [SiteController::class, 'home']);
-$app->router->get('/aggiungi', [SiteController::class, 'add']);
+$app->router->get('/aggiungiValutazione', [SiteController::class, 'add']);
 $app->router->get('/login', [SiteController::class, 'login']);
 $app->router->get('/visualizza', [SiteController::class, 'visualizza']);
 $app->router->get('/modifica', [SiteController::class, 'modifica']);
+$app->router->get('/creaUtente', [SiteController::class, 'addUtente']);
+
 $app->router->get('/pdf', [Pdf::class, 'generatePdf']);
+$app->router->get('/logout', [UserController::class, 'logout']);
 
 
 
@@ -33,7 +36,6 @@ $app->router->get('/pdf', [Pdf::class, 'generatePdf']);
 associated with a specific controller method that will handle the request and return the appropriate
 response. For example, when a user submits a registration form, the 'addUser' method in the
 'UserController' class will be called to handle the request and return the appropriate response.*/
-$app->router->post('/trash', [UserController::class, 'checkUser']);
 $app->router->post('/login', [UserController::class, 'checkUser']);
 $app->router->post('/addEvaluation', [EvaluationController::class, 'addEvaluation']);
 $app->router->post('/deleteEvaluation', [EvaluationController::class, 'deleteEvaluation']);

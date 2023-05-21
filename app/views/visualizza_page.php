@@ -1,3 +1,13 @@
+<?php
+
+    if($_SESSION['role'] === 1)
+        $info = $evaluationModel->getAll();
+    else{
+        $evaluationModel->setRagioneSociale($_SESSION['ragione_sociale']);
+        $info = $evaluationModel->getByRagioneSociale();
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="it">
 
@@ -189,14 +199,8 @@
     $max = date("Y-m-d");
     if (!isset($_SESSION['id_utente']))
         header("Location: login");
-    if ($ragione)
-        echo "<h1>Stai visualizzando tutte le valutazioni di $ragione</h1>";
-    elseif ($autore) {
-        $userModel->setId($autore);
-        echo "<h1>Stai visualizzando tutte le valutazioni effettuate da {$userModel->getById()}</h1>";
-    } else {
-        echo "<h1>Stai visualizzando tutte le valutazioni</h1>";
-    }
+
+    echo "<h1>Stai visualizzando tutte le valutazioni</h1>";
     if (isset($_GET['ve'])) {
         echo "<h3 class='alert'>Valutazione eliminata con successo</h3>";
     }
@@ -208,7 +212,7 @@
     } ?>
     <div class="cerca">
         <table>
-            <th> <input class="ragione" type="text" id="myInput" placeholder="Cerca per ragione sociale">
+            <th> <input class="ragione" type="text" id="myInput" placeholder="Cerca per ragione sociale" value="<?= isset($_SESSION['ragione_sociale']) ? $_SESSION['ragione_sociale'] : ""?>" <?= isset($_SESSION['ragione_sociale']) ? "disabled" : ""?>>
             </th>
             <th> <input class="autore" type="text" id="myInput" placeholder="Cerca per autore valutazione">
             </th>
@@ -242,10 +246,11 @@
                 $id = $value;
             if ($counter === 1) {
                 $userModel->setId($value);
-                echo "<td><a class='ranica'>{$userModel->getById($value)}</a></td>";
+                echo "<td><a class='ranica'>{$userModel->getById()}</a></td>";
             } elseif ($counter === 2) {
                 echo "<td><a class='oscar'>{$value}</a></td>";
             } elseif ($counter === 3) {
+                $value = $value[8] . $value[9] . "/" . $value[5] . $value[6] . "/" . $value[0] . $value[1] . $value[2] . $value[3];
                 echo "<td><a class='mapelli'>{$value}</a></td>";
             } elseif ($counter === 4) {
                 $value = $value === 0 ? 'Non valido' : "Valido";
@@ -302,6 +307,7 @@
     }
 
     $(document).ready(function() {
+        $(".ragione").trigger("input");
         // Bind the input event handler to the .ragione input
         $(".ragione").on("input", function(e) {
             e.preventDefault();

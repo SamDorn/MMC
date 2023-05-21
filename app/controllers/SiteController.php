@@ -31,18 +31,17 @@ class SiteController extends Controller
     {
         return $this->render('add_page');
     }
+    public function addUtente(): string
+    {
+        return $this->render('add_user');
+    }
     public function visualizza(): string
     {
         $evaluationModel = new EvaluationModel();
         $userModel = new UserModel();
-        $ragione = $_GET['ra'] ?? null;
-        $autore = $_GET['au'] ?? null;
-        $evaluationModel->setRagioneSociale($ragione);
         $params = [
-            'info' => (!$ragione) ? $evaluationModel->getAll() : $evaluationModel->getByRagioneSociale(),
-            'ragione' => $ragione,
-            'userModel' => $userModel,
-            'autore' => $autore
+            'evaluationModel' => $evaluationModel,
+            'userModel' => $userModel
         ];
         return $this->render("visualizza_page", $params);
     }

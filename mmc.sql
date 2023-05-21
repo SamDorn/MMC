@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Mag 19, 2023 alle 07:16
+-- Creato il: Mag 21, 2023 alle 14:34
 -- Versione del server: 10.4.27-MariaDB
 -- Versione PHP: 8.2.0
 
@@ -151,8 +151,8 @@ CREATE TABLE `evaluation` (
 --
 
 INSERT INTO `evaluation` (`id`, `id_utente`, `ragione_sociale`, `data_emissione`, `peso`, `altezza_da_terra`, `distanza_verticale`, `distanza_orizzontale`, `dislocazione_angolare`, `giudizio`, `frequenza`, `ora_frequenza`, `costo`, `una_mano`, `due_persone`, `peso_massimo`, `indice`, `valido`) VALUES
-(39, 1, 'MAURIZIO GAFFURI', '2023-05-10', 12, 176, 176, 64, 136, 'Scarso', 15, 'da 2 a 8 ore', 12, 1, 1, 0, 100, 1),
-(46, 1, 'EMILIANO', '2023-05-18', 15, 0, 25, 25, 0, 'Scarso', 0.2, '&amp;#60; 1 ora', 12, 0, 1, 13.86, 1.08225, 1);
+(48, 3, 'RANICONE', '2023-05-14', 12, 50, 50, 55, 120, 'Scarso', 0.2, 'da 2 a 8 ore', 12, 1, 1, 3.56462, 3.36642, 1),
+(49, 3, 'Fatture in cloud', '2023-05-11', 12, 75, 40, 50, 60, 'Buono', 1, 'da 1 a 2 ore', 12, 1, 1, 6.7797, 1.76999, 1);
 
 -- --------------------------------------------------------
 
@@ -201,18 +201,21 @@ INSERT INTO `frequenza` (`frequenza`, `durata`, `fattore`) VALUES
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
-  `username` varchar(255) NOT NULL,
+  `nome` varchar(255) NOT NULL,
+  `cognome` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL
+  `password` varchar(255) NOT NULL,
+  `role` tinyint(1) NOT NULL,
+  `ragione_sociale` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dump dei dati per la tabella `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `email`, `password`) VALUES
-(1, 'awd', 'awd@awd', 'awd'),
-(2, 'mauriziogaffuri', 'mauri@mauri', 'mauriziogaffuri');
+INSERT INTO `users` (`id`, `nome`, `cognome`, `email`, `password`, `role`, `ragione_sociale`) VALUES
+(3, 'Maurizio', 'Gaffuri', 'maurizio.gaffuri@gmail.com', 'mauriziogaffuri', 1, NULL),
+(4, 'Marcella', 'Falzone', 'marcella.falzone@gmail.com', 'marcellafalzone', 0, 'Fatture in cloud');
 
 --
 -- Indici per le tabelle scaricate
@@ -238,13 +241,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT per la tabella `evaluation`
 --
 ALTER TABLE `evaluation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT per la tabella `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -106,22 +106,25 @@ class UserModel extends Model
     }
     public function getUserByEmail(): void
     {
-        $query = "SELECT id, username FROM users WHERE email = :email";
+        $query = "SELECT * FROM users WHERE email = :email";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':email', $_SESSION['email']);
         $stmt->execute();
         $result = $stmt->fetch();
         $_SESSION['id_utente'] = $result['id'];
-        $_SESSION['username'] = $result['username'];
+        $_SESSION['nome'] = $result['nome'];
+        $_SESSION['cognome'] = $result['cognome'];
+        $_SESSION['role'] = $result['role'];
+        $_SESSION['ragione_sociale'] = $result['ragione_sociale'];
     }
     public function getById(): string
     {
-        $query = "SELECT username FROM users WHERE id = :id";
+        $query = "SELECT nome, cognome FROM users WHERE id = :id";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':id', $this->id);
         $stmt->execute();
         $result = $stmt->fetch();
-        return $result['username'];
+        return $result['nome'] . " " . $result['cognome'];
     }
 
 }

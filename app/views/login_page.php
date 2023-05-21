@@ -1,3 +1,8 @@
+<?php
+  if(isset($_SESSION['nome']))
+    header("Location: home");
+?>
+
 <!DOCTYPE html>
 <html style="font-size: 16px;" lang="it">
 
@@ -15,6 +20,21 @@
     body {
       overflow-y: hidden;
     }
+    .alert {
+      padding: 15px;
+      border-radius: 4px;
+      color: #721c24;
+      background-color: #f8d7da;
+      border-color: #f5c6cb;
+      text-align: center;
+      width: fit-content;
+      margin: 0 auto;
+      margin-bottom: 15px;
+    }
+
+    .hidden {
+      display: none;
+    }
   </style>
 </head>
 
@@ -23,7 +43,7 @@
     <img class="u-expanded-width u-image u-image-default u-image-1" src="images/gh4.jpg" alt="" data-image-width="1440" data-image-height="1080">
     <h2 class="u-align-center u-text u-text-default u-text-1">Benvenuto su OscarMMC</h2>
     <div class="u-form u-radius-20 u-white u-form-1">
-      <form class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" source="email" name="form" style="padding: 23px;">
+      <form class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" source="email" name="form" style="padding: 23px;" id="form">
         <h4 class="u-align-center u-form-group u-form-text u-text u-text-2">Accedi alla piattforma</h4>
         <div class="u-form-email u-form-group">
           <label for="name-4c18" class="u-label">Email</label>
@@ -33,6 +53,7 @@
           <label for="email-4c18" class="u-label">Password</label>
           <input placeholder="Inserisci la tua password" id="password" name="password" class="u-border-2 u-border-grey-10 u-grey-10 u-input u-input-rectangle u-radius-10" required="required" type="password">
         </div>
+        <div class="alert hidden">Compila tutti i campi</div>
         <div class="u-align-right u-form-group u-form-submit">
           <a class="u-active-palette-3-base u-border-5 u-border-active-palette-3-base u-border-hover-palette-3-base u-border-palette-2-base u-btn u-btn-round u-btn-submit u-button-style u-hover-palette-3-base u-palette-2-base u-radius-10 u-btn-1" id="login">Login<br>
           </a>
@@ -44,7 +65,24 @@
 </body>
 <script>
   $("#login").click(function(e) {
-    e.preventDefault();
+    var form = document.getElementById("form");
+    var requiredFields = form.querySelectorAll("[required]");
+
+    for (var i = 0; i < requiredFields.length; i++) {
+      if (requiredFields[i].value === "") {
+        if ($(".alert").hasClass("hidden")) {
+          $(".alert").removeClass("hidden")
+        } else {
+          $(".alert").addClass("hidden");
+          setTimeout(function() {
+            $(".alert").removeClass("hidden");
+          }, 500)
+        }
+
+
+        return; // Stop form submission
+      }
+    }
     $.ajax({
       type: "POST",
       url: "login",
@@ -54,8 +92,12 @@
       },
       dataType: "json",
       success: function(response) {
-        console.log(response)
-        location.href = 'home'
+        if(response != "ok"){
+          $(".alert").html("Credenziali errate");
+          $(".alert").removeClass("hidden")
+        }
+        else
+          location.href = 'home'
       }
     });
   });
