@@ -44,4 +44,9 @@ class UserController extends Controller
     {
         return json_encode(session_destroy());
     }
+    public function adduser(Request $request): mixed
+    {
+        $this->userModel->loadData($request->getBody());
+        return json_encode($this->userModel->addUser());
+    }
 }

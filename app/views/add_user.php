@@ -1,6 +1,6 @@
 <?php
-  if(!isset($_SESSION['role']) || $_SESSION['role']!== 1)
-    header("Location: login");
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 1)
+  header("Location: login");
 ?>
 <!DOCTYPE html>
 <html style="font-size: 16px;" lang="it">
@@ -36,6 +36,10 @@
     .hidden {
       display: none;
     }
+
+    .disabled:hover {
+      cursor: not-allowed;
+    }
   </style>
 </head>
 
@@ -44,154 +48,42 @@
     <h2 class="u-align-center u-text u-text-default u-text-1">Aggiungi un utente</h2>
     <div class="u-form u-radius-20 u-white u-form-1">
       <form class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" source="email" name="form" style="padding: 23px;" id="form">
-        <div class="u-form-group u-form-group-1">
-          <label for="text-81a7" class="u-label">Ragione sociale</label>
-          <input type="text" placeholder="" id="text-81a7" name="ragioneSociale" class="u-border-2 u-border-grey-10 u-grey-10 u-input u-input-rectangle u-radius-10 u-input-1" required="required">
+        <div class="u-form-group u-form-select u-form-group-7">
+          <label for="select-e411" class="u-label">Tipo di utente</label>
+          <div class="u-form-select-wrapper">
+            <select id="tipo" name="ruolo" class="u-border-2 u-border-grey-10 u-grey-10 u-input u-input-rectangle u-radius-10 u-input-7" required="required">
+              <option value="Seleziona" selected disabled hidden>Seleziona</option>
+              <option value=0>Visualizzatore</option>
+              <option value=1>Amministratore</option>
+            </select>
+            <svg class="u-caret u-caret-svg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 16 16" style="fill:currentColor;" xml:space="preserve">
+              <polygon class="st0" points="8,12 2,4 14,4 "></polygon>
+            </svg>
+          </div>
+        </div>
+        <div class="u-form-group u-form-group-9">
+          <label for="text-4739" class="u-label">Ragione sociale</label>
+          <input type="text" placeholder="" id="ragione" name="ragioneSociale" class="u-border-2 u-border-grey-10 u-grey-10 u-input u-input-rectangle u-radius-10 u-input-9">
+        </div>
+        <div id="divNome" class="u-form-group u-form-group-1">
+          <label for="text-81a7" class="u-label">Nome</label>
+          <input type="text" id="nome" placeholder="" name="nome" class="u-border-2 u-border-grey-10 u-grey-10 u-input u-input-rectangle u-radius-10 u-input-1" required="required">
+        </div>
+        <div id="divCognome" class="u-form-group u-form-group-1">
+          <label for="text-81a7" class="u-label">Cognome</label>
+          <input type="text" placeholder="" id="cognome" name="cognome" class="u-border-2 u-border-grey-10 u-grey-10 u-input u-input-rectangle u-radius-10 u-input-1" required="required">
+        </div>
+        <div id="divEmail" class="u-form-group u-form-group-1">
+          <label for="text-81a7" class="u-label">Email</label>
+          <input type="email" placeholder="" id="email" name="email" class="u-border-2 u-border-grey-10 u-grey-10 u-input u-input-rectangle u-radius-10 u-input-1" required="required">
         </div>
         <div class="u-form-date u-form-group u-form-group-2">
-          <label for="date-e23d" class="u-label">Data emissione</label>
-          <input type="date" placeholder="DD/MM/YYYY" id="date-e23d" name="data" class="u-border-2 u-border-grey-10 u-grey-10 u-input u-input-rectangle u-radius-10 u-input-2" required="" data-date-format="dd/mm/yyyy" max="<?= date("Y-m-d") ?>">
+          <label for="date-e23d" class="u-label">Password</label>
+          <input type="password" name="password" class="u-border-2 u-border-grey-10 u-grey-10 u-input u-input-rectangle u-radius-10 u-input-2" required>
         </div>
-        <div class="u-form-group u-form-group-9">
-          <label for="text-4739" class="u-label">Peso</label>
-          <input type="number" placeholder="" min="3" id="text-4739" name="peso" class="u-border-2 u-border-grey-10 u-grey-10 u-input u-input-rectangle u-radius-10 u-input-9" required="required">
-        </div>
-        <div class="u-form-group u-form-select u-form-group-7">
-          <label for="select-e411" class="u-label">Altezza da terra delle mani all'inizio del sollevamento</label>
-          <div class="u-form-select-wrapper">
-            <select id="select-e411" name="altezza" class="u-border-2 u-border-grey-10 u-grey-10 u-input u-input-rectangle u-radius-10 u-input-7" required="required">
-              <option value="Seleziona" selected disabled hidden>Seleziona</option>
-              <option value="0">0</option>
-              <option value="25">25</option>
-              <option value="50">50</option>
-              <option value="75">75</option>
-              <option value="100">100</option>
-              <option value="125">125</option>
-              <option value="150">150</option>
-              <option value="176">> 175</option>
-            </select>
-            <svg class="u-caret u-caret-svg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 16 16" style="fill:currentColor;" xml:space="preserve">
-              <polygon class="st0" points="8,12 2,4 14,4 "></polygon>
-            </svg>
-          </div>
-        </div>
-        <div class="u-form-group u-form-select u-form-group-7">
-          <label for="select-e411" class="u-label">Distanza verticale di spostamento del peso fra inizio e fine sollevamento</label>
-          <div class="u-form-select-wrapper">
-            <select id="select-e411" name="distanzaVerticale" class="u-border-2 u-border-grey-10 u-grey-10 u-input u-input-rectangle u-radius-10 u-input-7" required="required">
-              <option value="Seleziona" selected disabled hidden>Seleziona</option>
-              <option value="25">25</option>
-              <option value="30">30</option>
-              <option value="40">40</option>
-              <option value="50">50</option>
-              <option value="70">70</option>
-              <option value="100">100</option>
-              <option value="150">150</option>
-              <option value="176">> 175</option>
-            </select>
-            <svg class="u-caret u-caret-svg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 16 16" style="fill:currentColor;" xml:space="preserve">
-              <polygon class="st0" points="8,12 2,4 14,4 "></polygon>
-            </svg>
-          </div>
-        </div>
-        <div class="u-form-group u-form-select u-form-group-7">
-          <label for="select-e411" class="u-label">Distanza orizzontale tra mani e punto di mezzo delle caviglie</label>
-          <div class="u-form-select-wrapper">
-            <select id="select-e411" name="distanzaOrizzontale" class="u-border-2 u-border-grey-10 u-grey-10 u-input u-input-rectangle u-radius-10 u-input-7" required="required">
-              <option value="Seleziona" selected disabled hidden>Seleziona</option>
-              <option value="25">25</option>
-              <option value="30">30</option>
-              <option value="40">40</option>
-              <option value="50">50</option>
-              <option value="55">55</option>
-              <option value="60">60</option>
-              <option value="64">> 63</option>
-            </select>
-            <svg class="u-caret u-caret-svg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 16 16" style="fill:currentColor;" xml:space="preserve">
-              <polygon class="st0" points="8,12 2,4 14,4 "></polygon>
-            </svg>
-          </div>
-        </div>
-        <div class="u-form-group u-form-select u-form-group-7">
-          <label for="select-e411" class="u-label">Dislocazione angolare del peso in gradi</label>
-          <div class="u-form-select-wrapper">
-            <select id="select-e411" name="dislocazioneAngolare" class="u-border-2 u-border-grey-10 u-grey-10 u-input u-input-rectangle u-radius-10 u-input-7" required="required">
-              <option value="Seleziona" selected disabled hidden>Seleziona</option>
-              <option value="0">0°</option>
-              <option value="30">30°</option>
-              <option value="60">60°</option>
-              <option value="90">90°</option>
-              <option value="120">120°</option>
-              <option value="135">135°</option>
-              <option value="136">> 135°</option>
-            </select>
-            <svg class="u-caret u-caret-svg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 16 16" style="fill:currentColor;" xml:space="preserve">
-              <polygon class="st0" points="8,12 2,4 14,4 "></polygon>
-            </svg>
-          </div>
-        </div>
-        <div class="u-form-group u-form-select u-form-group-7">
-          <label for="select-e411" class="u-label">Giudizio sulla presa del carico</label>
-          <div class="u-form-select-wrapper">
-            <select id="select-e411" name="giudizio" class="u-border-2 u-border-grey-10 u-grey-10 u-input u-input-rectangle u-radius-10 u-input-7" required="required">
-              <option value="Seleziona" selected disabled hidden>Seleziona</option>
-              <option value="Buono">Buono</option>
-              <option value="Scarso">Scarso</option>
-            </select>
-            <svg class="u-caret u-caret-svg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 16 16" style="fill:currentColor;" xml:space="preserve">
-              <polygon class="st0" points="8,12 2,4 14,4 "></polygon>
-            </svg>
-          </div>
-        </div>
-        <div class="u-form-group u-form-select u-form-group-8">
-          <label for="select-bebc" class="u-label">Frequenza dei gesti</label>
-          <div class="u-form-select-wrapper">
-            <select id="select-bebc" name="frequenza" class="u-border-2 u-border-grey-10 u-grey-10 u-input u-input-rectangle u-radius-10 u-input-8" required="required">
-              <option value="Seleziona" selected disabled hidden>Seleziona</option>
-              <option value="0.2">0.20 gesti/minuto</option>
-              <option value="1">1 gesti/minuto</option>
-              <option value="4">4 gesti/minuto</option>
-              <option value="6">6 gesti/minuto</option>
-              <option value="9">9 gesti/minuto</option>
-              <option value="12">12 gesti/minuto</option>
-              <option value="15">> 15 gesti/minuto</option>
-            </select>
-            <svg class="u-caret u-caret-svg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 16 16" style="fill:currentColor;" xml:space="preserve">
-              <polygon class="st0" points="8,12 2,4 14,4 "></polygon>
-            </svg>
-          </div>
-        </div>
-        <div class="u-form-group u-form-select u-form-group-8">
-          <div class="u-form-select-wrapper">
-            <select id="select-bebc" name="oraFrequenza" class="u-border-2 u-border-grey-10 u-grey-10 u-input u-input-rectangle u-radius-10 u-input-8" required="required">
-              <option value="Seleziona" selected disabled hidden>Seleziona</option>
-              <option value="< 1 ora">
-                < 1 ora</option>
-              <option value="da 1 a 2 ore">da 1 a 2 ore</option>
-              <option value="da 2 a 8 ore">da 2 a 8 ore</option>
-            </select>
-            <svg class="u-caret u-caret-svg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 16 16" style="fill:currentColor;" xml:space="preserve">
-              <polygon class="st0" points="8,12 2,4 14,4 "></polygon>
-            </svg>
-          </div>
-        </div>
-        <div class="u-form-group u-form-group-9">
-          <label for="text-4739" class="u-label">Costo</label>
-          <input type="number" placeholder="" min="0" id="text-4739" name="costo" class="u-border-2 u-border-grey-10 u-grey-10 u-input u-input-rectangle u-radius-10 u-input-9" required="required">
-        </div>
-        <div class="u-form-checkbox u-form-group u-form-group-10">
-          <input type="checkbox" id="checkbox-1ab1" name="unaMano" value="On" required="required">
-          <label for="checkbox-1ab1" class="u-label">Sollevamento con una sola mano?</label>
-        </div>
-        <div class="u-form-checkbox u-form-group u-form-group-11">
-          <input type="checkbox" id="checkbox-76be" name="duePersone" value="On" required="required">
-          <label for="checkbox-76be" class="u-label">Sollevamento fatto da due persone?</label>
-        </div>
-
         <div class="alert hidden">Compila tutti i campi</div>
         <div class="u-align-right u-form-group u-form-submit">
-          <a class="u-active-palette-3-base u-border-5 u-border-active-palette-3-base u-border-hover-palette-3-base u-border-palette-2-base u-btn u-btn-round u-btn-submit u-button-style u-hover-palette-3-base u-palette-2-base u-radius-10 u-btn-1" id="aggiungi">Aggiungi</a>
-          <input type="submit" value="submit" class="u-form-control-hidden">
+          <a class="u-active-palette-3-base u-border-5 u-border-active-palette-3-base u-border-hover-palette-3-base u-border-palette-2-base u-btn u-btn-round u-btn-submit u-button-style u-hover-palette-3-base u-palette-2-base u-radius-10 u-btn-1" id="aggiungi">Crea utente</a>
         </div>
       </form>
     </div>
@@ -201,49 +93,54 @@
 </body>
 
 <script>
+  $("#tipo").change(function(e) {
+    e.preventDefault();
+    if ($("#tipo").val() === "1") {
+      $("#ragione").attr("disabled", "disabled");
+      $("#ragione").addClass("disabled");
+      $("#ragione").val("");
+      $("#ragione").removeAttr("required")
+    } else {
+      $("#ragione").removeAttr("disabled")
+      $("#ragione").attr("required", "required");
+      $("#ragione").removeClass("disabled");
+    }
+  });
   $("#aggiungi").click(function(e) {
+    e.preventDefault();
     var form = document.getElementById("form");
     var requiredFields = form.querySelectorAll("[required]");
 
     for (var i = 0; i < requiredFields.length; i++) {
       if (requiredFields[i].value === "") {
-        if ($(".alert").hasClass("hidden")) {
-          $(".alert").removeClass("hidden")
-        } else {
-          $(".alert").addClass("hidden");
-          setTimeout(function() {
-            $(".alert").removeClass("hidden");
-          }, 500)
-        }
-
-
-        return; // Stop form submission
+        $(".alert").removeClass("hidden");
+        return
       }
     }
-    e.preventDefault();
+    var emailField = $("#email");
+    var emailValue = emailField.val();
+    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailRegex.test(emailValue)) {
+      // Invalid email format
+      $(".alert").removeClass("hidden");
+      $(".alert").html("Email non valida");
+      return;
+    }
     $.ajax({
       type: "POST",
-      url: "addEvaluation",
+      url: "creaUtente",
       data: $("form").serialize(),
       dataType: "json",
       success: function(response) {
-        if (response == "ok") {
-          location.href = "visualizza?va"
+        if (response === "ok")
+          location.href = "/home?uc"
+        else{
+          $(".alert").removeClass("hidden");
+          $(".alert").html("C'è stato un problema");
         }
       }
     });
-  });
-  $('input[type="number"]').keypress(function(event) {
-    var keyCode = event.which ? event.which : event.keyCode;
-    var isValid = (keyCode >= 48 && keyCode <= 57) || // Allow numbers
-      keyCode === 8 || // Allow backspace
-      keyCode === 9 || // Allow tab
-      keyCode === 37 || // Allow left arrow
-      keyCode === 39 || // Allow right arrow
-      keyCode === 46; // Allow delete
-    if (!isValid) {
-      event.preventDefault();
-    }
   });
 </script>
 

@@ -1,11 +1,11 @@
 <?php
 
-    if($_SESSION['role'] === 1)
-        $info = $evaluationModel->getAll();
-    else{
-        $evaluationModel->setRagioneSociale($_SESSION['ragione_sociale']);
-        $info = $evaluationModel->getByRagioneSociale();
-    }
+if ($_SESSION['role'] === 1)
+    $info = $evaluationModel->getAll();
+else {
+    $evaluationModel->setRagioneSociale($_SESSION['ragione_sociale']);
+    $info = $evaluationModel->getByRagioneSociale();
+}
 ?>
 
 <!DOCTYPE html>
@@ -20,6 +20,8 @@
 
     <link rel="stylesheet" href="css/nicepage.css" media="screen">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
     <style>
         body,
         html {
@@ -176,7 +178,8 @@
         .cerca i {
             font-size: 40px;
         }
-        .main i{
+
+        .main i {
             font-size: 25px;
         }
 
@@ -212,11 +215,11 @@
     } ?>
     <div class="cerca">
         <table>
-            <th> <input class="ragione" type="text" id="myInput" placeholder="Cerca per ragione sociale" value="<?= isset($_SESSION['ragione_sociale']) ? $_SESSION['ragione_sociale'] : ""?>" <?= isset($_SESSION['ragione_sociale']) ? "disabled" : ""?>>
+            <th> <input class="ragione" type="text" id="myInput" placeholder="Cerca per ragione sociale" value="<?= isset($_SESSION['ragione_sociale']) ? $_SESSION['ragione_sociale'] : "" ?>" <?= isset($_SESSION['ragione_sociale']) ? "disabled" : "" ?>>
             </th>
             <th> <input class="autore" type="text" id="myInput" placeholder="Cerca per autore valutazione">
             </th>
-            <th> <input class="data" type="text" id="myInput" onfocus="(this.type='date')" placeholder="Cerca per data emissione" max="<?=$max ?>">
+            <th> <input class="data" type="text" id="myInput" onfocus="(this.type='date')" placeholder="Cerca per data emissione" max="<?= $max ?>">
             </th>
             <th><i class="fa-solid fa-delete-left"></i></th>
         </table>
@@ -233,8 +236,10 @@
     echo "<th>Data emissione</th>";
     echo "<th>Validità</th>";
     echo "<th>Scarica documento</th>";
-    echo "<th>Modifica documento</th>";
-    echo "<th>Elimina documento</th>";
+    if (!isset($_SESSION['ragione_sociale'])) {
+        echo "<th>Modifica documento</th>";
+        echo "<th>Elimina documento</th>";
+    }
     echo "</tr>";
     echo "</thead>";
     foreach ($info as $row) {
@@ -250,7 +255,7 @@
             } elseif ($counter === 2) {
                 echo "<td><a class='oscar'>{$value}</a></td>";
             } elseif ($counter === 3) {
-                $value = " " . $value[8] . $value[9] . " / " . $value[5] . $value[6] . " / " . $value[0] . $value[1] . $value[2] . $value[3] . " ";
+                $value = $value[8] . $value[9] . "/" . $value[5] . $value[6] . "/" . $value[0] . $value[1] . $value[2] . $value[3];
                 echo "<td><a class='mapelli'>{$value}</a></td>";
             } elseif ($counter === 4) {
                 $value = $value === 0 ? 'Non valido' : "Valido";
@@ -261,8 +266,11 @@
             $counter++;
         }
         echo "<td onclick='redirect($id)' class='small-cell'><i class='fa-solid fa-file-pdf'></i></td>";
-        echo "<td onclick='modify($id)' class='small-cell'><i class='fa-solid fa-pencil'></i></td>";
-        echo "<td onclick='elimina($id)' class='small-cell'><i class='fa-solid fa-trash'></i></td>";
+        if (!isset($_SESSION['ragione_sociale'])) {
+
+            echo "<td onclick='modify($id)' class='small-cell'><i class='fa-solid fa-pencil'></i></td>";
+            echo "<td onclick='elimina($id)' class='small-cell'><i class='fa-solid fa-trash'></i></td>";
+        }
         echo "</tr>";
     }
     echo "</tbody>";
@@ -282,13 +290,9 @@
         window.open("pdf?id=" + value, '_black').focus()
     }
 
-    function filterTable() {
+    function filterTable(value) {
         var searchText1 = $('.ragione').val().toLowerCase();
         var searchText2 = $('.autore').val().toLowerCase();
-        var searchText3 = $('.data').val().toLowerCase();
-        console.log(searchText3)
-        searchText3 = searchText3[8] + searchText3[9] + searchText3[8] + searchText3[9] + searchText3[8] + searchText3[9] +
-        console.log(searchText3)
         // Loop through each row in the table body
         $('.main tbody tr').each(function() {
             var cellText1 = $(this).find('td:eq(2)').text().toLowerCase();
@@ -299,7 +303,7 @@
             if (
                 (cellText1.startsWith(searchText1) || searchText1 === '') &&
                 (cellText2.startsWith(searchText2) || searchText2 === '') &&
-                (cellText3.startsWith(searchText3) || searchText3 === '')
+                (cellText3.startsWith(value) || value === '')
             ) {
                 $(this).show();
             } else {
@@ -308,43 +312,42 @@
         });
     }
 
-    $(document).ready(function() {
-        $(".ragione").trigger("input");
-        // Bind the input event handler to the .ragione input
-        $(".ragione").on("input", function(e) {
-            e.preventDefault();
-            filterTable.call(this, 2); // Use call() to set the correct context
-        });
-        $(".autore").on("input", function(e) {
-            e.preventDefault();
-            filterTable.call(this, 1); // Use call() to set the correct context
-        });
+    $(".ragione").trigger("input");
+    // Bind the input event handler to the .ragione input
+    $(".ragione").on("input", function(e) {
+        e.preventDefault();
+        filterTable.call(this, $('.data').val().toLowerCase()); // Use call() to set the correct context
+    });
+    $(".autore").on("input", function(e) {
+        e.preventDefault();
+        filterTable.call(this, $('.data').val().toLowerCase()); // Use call() to set the correct context
+    });
 
-        $(".data").on("input", function(e) {
-            e.preventDefault();
-            filterTable.call(this, 3); // Use call() to set the correct context
-        });
-        // Bind the click event handler to the .oscar link
-        $(".oscar").click(function(e) {
-            e.preventDefault();
-            var value = $(this).closest('tr').find('td:eq(2)').text();
-            $('.ragione').val(value);
-            filterTable.call($('.ragione')[0], 2); // Use call() to set the correct context
-        });
-        $(".ranica").click(function(e) {
-            e.preventDefault();
-            var value = $(this).closest('tr').find('td:eq(1)').text();
-            $('.autore').val(value);
-            filterTable.call($('.autore')[0], 1);
+    $(".data").on("input", function(e) {
+        e.preventDefault();
 
-        });
-        $(".mapelli").click(function(e) {
-            e.preventDefault();
-            var value = $(this).closest('tr').find('td:eq(3)').text();
-            $('.data').val(value);
-            filterTable.call($('.data')[0], 3);
+        filterTable.call(this, formatDate($('.data').val().toLowerCase())); // Use call() to set the correct context
+    });
+    // Bind the click event handler to the .oscar link
+    $(".oscar").click(function(e) {
+        e.preventDefault();
+        var value = $(this).closest('tr').find('td:eq(2)').text();
+        $('.ragione').val(value);
+        filterTable.call($('.ragione')[0], $('.data').val().toLowerCase()); // Use call() to set the correct context
+    });
+    $(".ranica").click(function(e) {
+        e.preventDefault();
+        var value = $(this).closest('tr').find('td:eq(1)').text();
+        $('.autore').val(value);
+        filterTable.call($('.autore')[0], $('.data').val().toLowerCase());
 
-        });
+    });
+    $(".mapelli").click(function(e) {
+        e.preventDefault();
+        var value = $(this).closest('tr').find('td:eq(3)').text();
+        $('.data').val(value);
+        filterTable.call($('.data')[0], $('.data').val().toLowerCase());
+
     });
 
     function elimina(value) {
@@ -390,10 +393,24 @@
         $('.alert').addClass('hidden');
     }, 3000);
 
-    $(".cerca i").click(function(e) {
-        $("input").val("");
-        $(".ragione").trigger("input");
-    });
+
+
+    function formatDate(date) {
+        var parts = date.split('-');
+        var formattedDate = parts[2] + '/' + parts[1] + '/' + parts[0];
+        return formattedDate;
+    }
+    <?php if (!isset($_SESSION['ragione_sociale'])) : ?>
+        $(".cerca i").click(function(e) {
+            $("input").val("");
+            $(".ragione").trigger("input");
+        });
+    <?php else : ?>
+        $(".cerca i").click(function(e) {
+            $(".autore, .data").val("");
+            $(".ragione").trigger("input");
+        });
+    <?php endif; ?>
 </script>
 
 </html>

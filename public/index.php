@@ -41,6 +41,7 @@ $app->router->post('/login', [UserController::class, 'checkUser']);
 $app->router->post('/addEvaluation', [EvaluationController::class, 'addEvaluation']);
 $app->router->post('/deleteEvaluation', [EvaluationController::class, 'deleteEvaluation']);
 $app->router->post('/modifyEvaluation', [EvaluationController::class, 'modifyEvaluation']);
+$app->router->post('/creaUtente', [UserController::class, 'addUser']);
 
 
 

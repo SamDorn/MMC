@@ -34,11 +34,11 @@ class Pdf
         $pdf->Cell(0,0,date("d/m/Y"),0,0,'L');
         $pdf->Ln(3);
         // Set the font and font size for the PDF
-        $pdf->SetFont('Arial', 'B', 20);
+        $pdf->SetFont('Arial', 'B', 18);
         $pdf->SetFillColor(207, 209, 212);
 
         // Write text to the PDF
-        $pdf->Cell(190, 20, "DOCUMENTO UNICO DI VALUTAZIONE DEI RISCHI", 1, 2, 'C');
+        $pdf->Cell(190, 17, "DOCUMENTO UNICO DI VALUTAZIONE DEI RISCHI", 1, 2, 'C');
         $pdf->Ln(10);
         $pdf->SetFont('Arial', 'B', 12);
         $pdf->Cell(190, 10, "Azienda appaltatrice", 0, 2, 'L', true);
@@ -70,10 +70,22 @@ class Pdf
         $pdf->SetFont('Arial', '', 10);
         $pdf->SetFillColor(255, 255, 255);
 
-        $pdf->Ln(10);
+        $pdf->Ln(3);
         
         $pdf->SetFont('Arial', 'B', 10);
-        $pdf->Cell(73, 10, "Peso: ", 1);
+        $pdf->Cell(73, 10, "Data emissione: ", 1);
+        $pdf->SetFont('Arial', '', 10);
+        $pdf->Cell(28, 10, $data, 1);
+        $pdf->Ln(10);
+
+        $pdf->SetFont('Arial', 'B', 10);
+        $pdf->Cell(73, 10, "Costo: ", 1);
+        $pdf->SetFont('Arial', '', 10);
+        $pdf->Cell(28, 10, $infoEval['costo'] . " euro", 1);
+        $pdf->Ln(10);
+
+        $pdf->SetFont('Arial', 'B', 10);
+        $pdf->Cell(73, 10, "Peso sollevato: ", 1);
         $pdf->SetFont('Arial', '', 10);
         $pdf->Cell(28, 10, $infoEval['peso'] . " kg", 1);
         $pdf->Ln(10);
@@ -124,14 +136,6 @@ class Pdf
         $pdf->Cell(28, 10, $infoEval['ora_frequenza'], 1);
         $pdf->Ln(10);
 
-
-        $pdf->SetFont('Arial', 'B', 10);
-        $pdf->Cell(73, 10, "Costo: ", 1);
-        $pdf->SetFont('Arial', '', 10);
-        $pdf->Cell(28, 10,  " $" . $infoEval['costo'], 1);
-        $pdf->Ln(10);
-
-
         $pdf->SetFont('Arial', 'B', 10);
         $pdf->Cell(73, 10, "Una mano: ", 1);
         $pdf->SetFont('Arial', '', 10);
@@ -160,19 +164,24 @@ class Pdf
         $pdf->Ln(13);
 
 
+
+        
+
+
         $pdf->SetFont('Arial', 'B', 10);
         $pdf->SetFillColor(207, 209, 212);
         if ($infoEval['indice'] <= 0.85) {
-            $pdf->Cell(190, 10, "Situazione accettabile: non e' necessario nessun provvedimento", 1, 1, 'C', true);
+            $pdf->Cell(190, 10, "Situazione accettabile: non e' necessario nessun provvedimento", 1, 1, 'L', true);
         } else if ($infoEval['indice'] <= 0.99) {
-            $pdf->Cell(190, 10, "E' necessario attivare la sorveglianza sanitaria e la formazione e informazione del personale", 1, 1, 'C', true);
+            $pdf->Cell(190, 10, "E' necessario attivare la sorveglianza sanitaria e la formazione e informazione del personale", 1, 1, 'L', true);
         } else {
             
-            $pdf->Cell(190, 10, "E' necessario attivare interventi di prevenzione, la sorveglianza sanitaria annuale", 0, 1, 'C', true);
+            $pdf->Cell(190, 10, "E' necessario attivare interventi di prevenzione, la sorveglianza sanitaria annuale", 0, 1, 'L', true);
             $pdf->Ln(0.0001);
-            $pdf->Cell(190, 10, " e la formazione e informazione del personale", 3, 1, 'C', true);
+            $pdf->Cell(190, 10, " e la formazione e informazione del personale", 3, 1, 'L', true);
         }
 
-        $pdf->Output('D', "valutazione_{$infoEval['ragione_sociale']}_$data");
+        //$pdf->Output('D', "valutazione_{$infoEval['ragione_sociale']}_$data");
+        $pdf->Output();
     }
 }

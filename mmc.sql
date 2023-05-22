@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Mag 21, 2023 alle 14:34
--- Versione del server: 10.4.27-MariaDB
--- Versione PHP: 8.2.0
+-- Creato il: Mag 23, 2023 alle 00:32
+-- Versione del server: 10.4.28-MariaDB
+-- Versione PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -129,7 +129,7 @@ CREATE TABLE `evaluation` (
   `id` int(11) NOT NULL,
   `id_utente` int(11) NOT NULL,
   `ragione_sociale` varchar(255) NOT NULL,
-  `data_emissione` date NOT NULL DEFAULT current_timestamp(),
+  `data_emissione` date DEFAULT NULL,
   `peso` float NOT NULL,
   `altezza_da_terra` float NOT NULL,
   `distanza_verticale` float NOT NULL,
@@ -151,8 +151,7 @@ CREATE TABLE `evaluation` (
 --
 
 INSERT INTO `evaluation` (`id`, `id_utente`, `ragione_sociale`, `data_emissione`, `peso`, `altezza_da_terra`, `distanza_verticale`, `distanza_orizzontale`, `dislocazione_angolare`, `giudizio`, `frequenza`, `ora_frequenza`, `costo`, `una_mano`, `due_persone`, `peso_massimo`, `indice`, `valido`) VALUES
-(48, 3, 'RANICONE', '2023-05-14', 12, 50, 50, 55, 120, 'Scarso', 0.2, 'da 2 a 8 ore', 12, 1, 1, 3.56462, 3.36642, 1),
-(49, 3, 'Fatture in cloud', '2023-05-11', 12, 75, 40, 50, 60, 'Buono', 1, 'da 1 a 2 ore', 12, 1, 1, 6.7797, 1.76999, 1);
+(55, 3, 'Oscar', '2023-05-12', 12, 0, 30, 25, 0, 'Buono', 0.2, '&amp;#60; 1 ora', 1, 0, 1, 13.4442, 0.892578, 1);
 
 -- --------------------------------------------------------
 
@@ -231,7 +230,8 @@ ALTER TABLE `evaluation`
 -- Indici per le tabelle `users`
 --
 ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`);
 
 --
 -- AUTO_INCREMENT per le tabelle scaricate
@@ -241,13 +241,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT per la tabella `evaluation`
 --
 ALTER TABLE `evaluation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT per la tabella `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

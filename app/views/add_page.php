@@ -1,6 +1,6 @@
 <?php
-  if(!isset($_SESSION['role']) || $_SESSION['role']!== 1)
-    header("Location: login");
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 1)
+  header("Location: login");
 ?>
 <!DOCTYPE html>
 <html style="font-size: 16px;" lang="it">
@@ -54,7 +54,7 @@
         </div>
         <div class="u-form-group u-form-group-9">
           <label for="text-4739" class="u-label">Peso</label>
-          <input type="number" placeholder="" min="3" id="text-4739" name="peso" class="u-border-2 u-border-grey-10 u-grey-10 u-input u-input-rectangle u-radius-10 u-input-9" required="required">
+          <input type="number" placeholder="" min="3" max="100" id="peso" name="peso" class="u-border-2 u-border-grey-10 u-grey-10 u-input u-input-rectangle u-radius-10 u-input-9" required="required">
         </div>
         <div class="u-form-group u-form-select u-form-group-7">
           <label for="select-e411" class="u-label">Altezza da terra delle mani all'inizio del sollevamento</label>
@@ -177,7 +177,7 @@
         </div>
         <div class="u-form-group u-form-group-9">
           <label for="text-4739" class="u-label">Costo</label>
-          <input type="number" placeholder="" min="0" id="text-4739" name="costo" class="u-border-2 u-border-grey-10 u-grey-10 u-input u-input-rectangle u-radius-10 u-input-9" required="required">
+          <input type="number" placeholder="" min="0" max="1000" id="text-4739" name="costo" id="costo" class="u-border-2 u-border-grey-10 u-grey-10 u-input u-input-rectangle u-radius-10 u-input-9" required="required">
         </div>
         <div class="u-form-checkbox u-form-group u-form-group-10">
           <input type="checkbox" id="checkbox-1ab1" name="unaMano" value="On" required="required">
@@ -188,7 +188,8 @@
           <label for="checkbox-76be" class="u-label">Sollevamento fatto da due persone?</label>
         </div>
 
-        <div class="alert hidden">Compila tutti i campi</div>
+        <div class="alert hidden" id="compila">Compila tutti i campi</div>
+        <div class="alert hidden" id="nonValido">Alcuni valori non sono validi</div>
         <div class="u-align-right u-form-group u-form-submit">
           <a class="u-active-palette-3-base u-border-5 u-border-active-palette-3-base u-border-hover-palette-3-base u-border-palette-2-base u-btn u-btn-round u-btn-submit u-button-style u-hover-palette-3-base u-palette-2-base u-radius-10 u-btn-1" id="aggiungi">Aggiungi</a>
           <input type="submit" value="submit" class="u-form-control-hidden">
@@ -207,18 +208,28 @@
 
     for (var i = 0; i < requiredFields.length; i++) {
       if (requiredFields[i].value === "") {
-        if ($(".alert").hasClass("hidden")) {
-          $(".alert").removeClass("hidden")
+        if ($("#compila").hasClass("hidden")) {
+          $("#compila").removeClass("hidden")
         } else {
-          $(".alert").addClass("hidden");
+          $("#compila").addClass("hidden");
           setTimeout(function() {
-            $(".alert").removeClass("hidden");
+            $("#compila").removeClass("hidden");
           }, 500)
         }
 
 
         return; // Stop form submission
       }
+    }
+    if ($("#costo").val() < 0 || $("#costo").val() > 1000) {
+
+      $("#nonValido").removeClass("hidden");
+      return
+    }
+    if ($("#peso").val() < 3 || $("#peso").val() > 1000) {
+
+      $("#nonValido").removeClass("hidden");
+      return
     }
     e.preventDefault();
     $.ajax({

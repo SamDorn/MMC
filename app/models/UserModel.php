@@ -8,9 +8,13 @@ use Exception;
 class UserModel extends Model
 {
     protected ?int $id;
+    protected ?int $ruolo;
     protected ?string $username;
     protected ?string $email;
     protected ?string $password;
+    protected ?string $nome;
+    protected ?string $cognome;
+    protected ?string $ragioneSociale;
     /**
      * Undocumented function
      *
@@ -83,6 +87,24 @@ class UserModel extends Model
         return $this->id;
     }
 
+    public function addUser(): string
+    {
+        try {
+            $query = "INSERT INTO users (id, nome, cognome, email, password, role, ragione_sociale)
+                VALUES (null, :nome, :cognome, :email, :password, :role, :ragione_sociale)";
+            $stmt = $this->conn->prepare($query);
+            $stmt->bindParam(':nome', $this->nome);
+            $stmt->bindParam(':cognome', $this->cognome);
+            $stmt->bindParam(':email', $this->email);
+            $stmt->bindParam(':password', $this->password);
+            $stmt->bindParam(':role', $this->ruolo);
+            $stmt->bindParam(':ragione_sociale', $this->ragioneSociale);
+            $stmt->execute();
+            return "ok";
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+    }
     /**
      * Checks if the user is in the database
      * 
@@ -126,5 +148,4 @@ class UserModel extends Model
         $result = $stmt->fetch();
         return $result['nome'] . " " . $result['cognome'];
     }
-
 }

@@ -118,10 +118,29 @@ if (!isset($_SESSION['email'])) {
     .tooltip-btn:hover::after {
       opacity: 1;
     }
+
+    .alert {
+      padding: 15px;
+      border-radius: 4px;
+      color: #155724;
+      background-color: #d4edda;
+      border-color: #c3e6cb;
+      text-align: center;
+      width: fit-content;
+      margin: 0 auto;
+      margin-bottom: 15px;
+      font-size: 30px;
+    }
+    .hidden{
+      display: none;
+    }
   </style>
 </head>
 
 <body class="u-body u-xl-mode" data-lang="it">
+  <?php if (isset($_GET['uc'])) : ?>
+    <div class="alert">Utente creato con successo</div>
+  <?php endif; ?>
   <div id="modal" class="modal">
     <div class="modal-content">
       <h2 id="title-modal" style="text-align: center;">Profilo utente</h2>
@@ -196,6 +215,9 @@ if (!isset($_SESSION['email'])) {
       });
     }, 2000);
   });
+  setTimeout(function() {
+    $('.alert').addClass('hidden');
+  }, 3000);
 </script>
 
 </html>

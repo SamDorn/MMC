@@ -39,28 +39,26 @@
 </head>
 
 <body class="u-body u-xl-mode" data-lang="it">
-  <section class="u-align-center u-clearfix u-white u-section-1" id="carousel_5f8e">
-    <img class="u-expanded-width u-image u-image-default u-image-1" src="images/gh4.jpg" alt="" data-image-width="1440" data-image-height="1080">
-    <h2 class="u-align-center u-text u-text-default u-text-1">Benvenuto su OscarMMC</h2>
-    <div class="u-form u-radius-20 u-white u-form-1">
-      <form class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" source="email" name="form" style="padding: 23px;" id="form">
-        <h4 class="u-align-center u-form-group u-form-text u-text u-text-2">Accedi alla piattforma</h4>
-        <div class="u-form-email u-form-group">
-          <label for="name-4c18" class="u-label">Email</label>
-          <input type="email" placeholder="Inserisci la tua email" id="email" name="email" class="u-border-2 u-border-grey-10 u-grey-10 u-input u-input-rectangle u-radius-10" required="required">
-        </div>
-        <div class="u-form-group">
-          <label for="email-4c18" class="u-label">Password</label>
-          <input placeholder="Inserisci la tua password" id="password" name="password" class="u-border-2 u-border-grey-10 u-grey-10 u-input u-input-rectangle u-radius-10" required="required" type="password">
-        </div>
-        <div class="alert hidden">Compila tutti i campi</div>
-        <div class="u-align-right u-form-group u-form-submit">
-          <a class="u-active-palette-3-base u-border-5 u-border-active-palette-3-base u-border-hover-palette-3-base u-border-palette-2-base u-btn u-btn-round u-btn-submit u-button-style u-hover-palette-3-base u-palette-2-base u-radius-10 u-btn-1" id="login">Login<br>
-          </a>
-        </div>
-      </form>
-    </div>
-  </section>
+  <section class="u-align-center u-clearfix u-image u-section-1" id="carousel_5f8e">
+      <h2 class="u-align-center u-text u-text-default u-text-1">Benvenuto su OscarMMC</h2>
+      <div class="u-form u-radius-20 u-white u-form-1">
+        <form id="form" class="u-clearfix u-form-spacing-15 u-form-vertical u-inner-form" source="email" name="form" style="padding: 23px;">
+          <h4 class="u-align-center u-form-group u-form-text u-text u-text-2">Accedi alla piattforma</h4>
+          <div class="u-form-email u-form-group">
+            <label for="name-4c18" class="u-label">Email</label>
+            <input type="email" placeholder="Inserisci la tua email" id="email" name="email" class="u-border-2 u-border-grey-10 u-grey-10 u-input u-input-rectangle u-radius-10" required="required">
+          </div>
+          <div class="u-form-group">
+            <label for="email-4c18" class="u-label">Password</label>
+            <input placeholder="Inserisci la tua password" id="password" name="password" class="u-border-2 u-border-grey-10 u-grey-10 u-input u-input-rectangle u-radius-10" required="required" type="password">
+          </div>
+          <div class="alert hidden">Compila tutti i campi</div>
+          <div class="u-align-right u-form-group u-form-submit">
+            <a id="login" class="u-active-palette-3-base u-border-5 u-border-active-palette-3-base u-border-hover-palette-3-base u-border-palette-2-base u-btn u-btn-round u-btn-submit u-button-style u-hover-palette-3-base u-palette-2-base u-radius-10 u-btn-1">Login<br>
+            </a>
+        </form>
+      </div>
+    </section>
 
 </body>
 <script>
