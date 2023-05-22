@@ -1,11 +1,10 @@
 <?php
 
-if(!isset($_SESSION['role']) || $_SESSION['role']!== 1)
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 1)
   header("Location: login");
 
 if (str_contains($info['ora_frequenza'], "&"))
   $info['ora_frequenza'] = "< 1 ora";
-
 ?>
 <!DOCTYPE html>
 <html style="font-size: 16px;" lang="it">
@@ -27,19 +26,20 @@ if (str_contains($info['ora_frequenza'], "&"))
   <meta property="og:type" content="website">
   <style>
     .alert {
-  padding: 15px;
-  border-radius: 4px;
-  color: #721c24;
-  background-color: #f8d7da;
-  border-color: #f5c6cb;
-  text-align: center;
-  width: fit-content;
-  margin: 0 auto;
-  margin-bottom: 15px;
-}
-.hidden{
-  display: none;
-}
+      padding: 15px;
+      border-radius: 4px;
+      color: #721c24;
+      background-color: #f8d7da;
+      border-color: #f5c6cb;
+      text-align: center;
+      width: fit-content;
+      margin: 0 auto;
+      margin-bottom: 15px;
+    }
+
+    .hidden {
+      display: none;
+    }
   </style>
 </head>
 
@@ -64,15 +64,15 @@ if (str_contains($info['ora_frequenza'], "&"))
           <label for="select-e411" class="u-label">Altezza da terra delle mani all'inizio del sollevamento</label>
           <div class="u-form-select-wrapper">
             <select id="select-e411" name="altezza" class="u-border-2 u-border-grey-10 u-grey-10 u-input u-input-rectangle u-radius-10 u-input-7" required="required">
-              <option value="<?= $info['altezza_da_terra'] ?>" selected hidden><?= $info['altezza_da_terra'] ?></option>
-              <option value="0">0</option>
-              <option value="25">25</option>
-              <option value="50">50</option>
-              <option value="75">75</option>
-              <option value="100">100</option>
-              <option value="125">125</option>
-              <option value="150">150</option>
-              <option value="176">> 175</option>
+              <option value="<?= $info['altezza_da_terra'] ?>" selected hidden><?= $info['altezza_da_terra'] ?>&nbspcm</option>
+              <option value="0">0 cm</option>
+              <option value="25">25 cm</option>
+              <option value="50">50 cm</option>
+              <option value="75">75 cm</option>
+              <option value="100">100 cm</option>
+              <option value="125">125 cm</option>
+              <option value="150">150 cm</option>
+              <option value="176">> 175 cm</option>
             </select>
             <svg class="u-caret u-caret-svg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 16 16" style="fill:currentColor;" xml:space="preserve">
               <polygon class="st0" points="8,12 2,4 14,4 "></polygon>
@@ -83,15 +83,15 @@ if (str_contains($info['ora_frequenza'], "&"))
           <label for="select-e411" class="u-label">Distanza verticale di spostamento del peso fra inizio e fine sollevamento</label>
           <div class="u-form-select-wrapper">
             <select id="select-e411" name="distanzaVerticale" class="u-border-2 u-border-grey-10 u-grey-10 u-input u-input-rectangle u-radius-10 u-input-7" required="required">
-              <option value="<?= $info['distanza_verticale'] ?>" selected hidden><?= $info['distanza_verticale'] ?></option>
-              <option value="25">25</option>
-              <option value="30">30</option>
-              <option value="40">40</option>
-              <option value="50">50</option>
-              <option value="70">70</option>
-              <option value="100">100</option>
-              <option value="150">150</option>
-              <option value="176">> 175</option>
+              <option value="<?= $info['distanza_verticale'] ?>" selected hidden><?= $info['distanza_verticale'] ?> &nbspcm</option>
+              <option value="25">25 cm</option>
+              <option value="30">30 cm</option>
+              <option value="40">40 cm</option>
+              <option value="50">50 cm</option>
+              <option value="70">70 cm</option>
+              <option value="100">100 cm</option>
+              <option value="150">150 cm</option>
+              <option value="176">> 175 cm</option>
             </select>
             <svg class="u-caret u-caret-svg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 16 16" style="fill:currentColor;" xml:space="preserve">
               <polygon class="st0" points="8,12 2,4 14,4 "></polygon>
@@ -102,14 +102,14 @@ if (str_contains($info['ora_frequenza'], "&"))
           <label for="select-e411" class="u-label">Distanza orizzontale tra mani e punto di mezzo delle caviglie</label>
           <div class="u-form-select-wrapper">
             <select id="select-e411" name="distanzaOrizzontale" class="u-border-2 u-border-grey-10 u-grey-10 u-input u-input-rectangle u-radius-10 u-input-7" required="required">
-              <option value="<?= $info['distanza_orizzontale'] ?>" selected hidden><?= $info['distanza_orizzontale'] ?></option>
-              <option value="25">25</option>
-              <option value="30">30</option>
-              <option value="40">40</option>
-              <option value="50">50</option>
-              <option value="55">55</option>
-              <option value="60">60</option>
-              <option value="64">> 63</option>
+              <option value="<?= $info['distanza_orizzontale'] ?>" selected hidden><?= $info['distanza_orizzontale'] ?>&nbspcm</option>
+              <option value="25">25 cm</option>
+              <option value="30">30 cm</option>
+              <option value="40">40 cm</option>
+              <option value="50">50 cm</option>
+              <option value="55">55 cm</option>
+              <option value="60">60 cm</option>
+              <option value="64">> 63 cm</option>
             </select>
             <svg class="u-caret u-caret-svg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 16 16" style="fill:currentColor;" xml:space="preserve">
               <polygon class="st0" points="8,12 2,4 14,4 "></polygon>
@@ -120,7 +120,7 @@ if (str_contains($info['ora_frequenza'], "&"))
           <label for="select-e411" class="u-label">Dislocazione angolare del peso in gradi</label>
           <div class="u-form-select-wrapper">
             <select id="select-e411" name="dislocazioneAngolare" class="u-border-2 u-border-grey-10 u-grey-10 u-input u-input-rectangle u-radius-10 u-input-7" required="required">
-              <option value="<?= $info['dislocazione_angolare'] ?>" selected hidden><?= $info['dislocazione_angolare'] ?></option>
+              <option value="<?= $info['dislocazione_angolare'] ?>" selected hidden><?= $info['dislocazione_angolare'] ?>&nbsp°</option>
               <option value="0">0°</option>
               <option value="30">30°</option>
               <option value="60">60°</option>
@@ -151,8 +151,8 @@ if (str_contains($info['ora_frequenza'], "&"))
           <label for="select-bebc" class="u-label">Frequenza dei gesti</label>
           <div class="u-form-select-wrapper">
             <select id="select-bebc" name="frequenza" class="u-border-2 u-border-grey-10 u-grey-10 u-input u-input-rectangle u-radius-10 u-input-8" required="required">
-              <option value="<?= $info['frequenza'] ?>" selected hidden><?= $info['frequenza'] ?></option>
-              <option value="0.2">0.20 gesti/minuto</option>
+              <option value="<?= $info['frequenza'] ?>" selected hidden><?= $info['frequenza'] ?>&nbspgesti/minuto</option>
+              <option value="0.2">0.2 gesti/minuto</option>
               <option value="1">1 gesti/minuto</option>
               <option value="4">4 gesti/minuto</option>
               <option value="6">6 gesti/minuto</option>
@@ -168,7 +168,7 @@ if (str_contains($info['ora_frequenza'], "&"))
         <div class="u-form-group u-form-select u-form-group-8">
           <div class="u-form-select-wrapper">
             <select id="select-bebc" name="oraFrequenza" class="u-border-2 u-border-grey-10 u-grey-10 u-input u-input-rectangle u-radius-10 u-input-8" required="required">
-              <option value="<?= $info['ora_frequenza'] ?>" selected hidden><?= $info['ora_frequenza'] === "&#60; 1 ora" ? "< 1 ora" : $info['ora_frequenza'] ?></option>
+              <option value="<?= $info['ora_frequenza'] ?>" selected hidden><?= $info['ora_frequenza'] ?></option>
               <option value="< 1 ora">
                 < 1 ora</option>
               <option value="da 1 a 2 ore">da 1 a 2 ore</option>
@@ -181,7 +181,7 @@ if (str_contains($info['ora_frequenza'], "&"))
         </div>
         <div class="u-form-group u-form-group-9">
           <label for="text-4739" class="u-label">Costo</label>
-          <input type="number" value="<?= $info['costo'] ?>" placeholder="" min="0" id="text-4739" name="costo" class="u-border-2 u-border-grey-10 u-grey-10 u-input u-input-rectangle u-radius-10 u-input-9" required="required">
+          <input type="number" value="<?= $info['costo'] ?>" placeholder="" min="0" max="10000" id="text-4739" name="costo" class="u-border-2 u-border-grey-10 u-grey-10 u-input u-input-rectangle u-radius-10 u-input-9" required="required">
         </div>
         <div class="u-form-checkbox u-form-group u-form-group-10">
           <input type="checkbox" id="checkbox-1ab1" name="unaMano" value="On" required="required" <?= $info['una_mano'] === 0 ? '' : 'checked' ?>>

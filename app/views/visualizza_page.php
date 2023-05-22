@@ -250,7 +250,7 @@
             } elseif ($counter === 2) {
                 echo "<td><a class='oscar'>{$value}</a></td>";
             } elseif ($counter === 3) {
-                $value = $value[8] . $value[9] . "/" . $value[5] . $value[6] . "/" . $value[0] . $value[1] . $value[2] . $value[3];
+                $value = " " . $value[8] . $value[9] . " / " . $value[5] . $value[6] . " / " . $value[0] . $value[1] . $value[2] . $value[3] . " ";
                 echo "<td><a class='mapelli'>{$value}</a></td>";
             } elseif ($counter === 4) {
                 $value = $value === 0 ? 'Non valido' : "Valido";
@@ -286,7 +286,9 @@
         var searchText1 = $('.ragione').val().toLowerCase();
         var searchText2 = $('.autore').val().toLowerCase();
         var searchText3 = $('.data').val().toLowerCase();
-
+        console.log(searchText3)
+        searchText3 = searchText3[8] + searchText3[9] + searchText3[8] + searchText3[9] + searchText3[8] + searchText3[9] +
+        console.log(searchText3)
         // Loop through each row in the table body
         $('.main tbody tr').each(function() {
             var cellText1 = $(this).find('td:eq(2)').text().toLowerCase();

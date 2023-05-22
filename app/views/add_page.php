@@ -61,14 +61,14 @@
           <div class="u-form-select-wrapper">
             <select id="select-e411" name="altezza" class="u-border-2 u-border-grey-10 u-grey-10 u-input u-input-rectangle u-radius-10 u-input-7" required="required">
               <option value="Seleziona" selected disabled hidden>Seleziona</option>
-              <option value="0">0</option>
-              <option value="25">25</option>
-              <option value="50">50</option>
-              <option value="75">75</option>
-              <option value="100">100</option>
-              <option value="125">125</option>
-              <option value="150">150</option>
-              <option value="176">> 175</option>
+              <option value="0">0 cm</option>
+              <option value="25">25 cm</option>
+              <option value="50">50 cm</option>
+              <option value="75">75 cm</option>
+              <option value="100">100 cm</option>
+              <option value="125">125 cm</option>
+              <option value="150">150 cm</option>
+              <option value="176">> 175 cm</option>
             </select>
             <svg class="u-caret u-caret-svg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 16 16" style="fill:currentColor;" xml:space="preserve">
               <polygon class="st0" points="8,12 2,4 14,4 "></polygon>
@@ -80,14 +80,14 @@
           <div class="u-form-select-wrapper">
             <select id="select-e411" name="distanzaVerticale" class="u-border-2 u-border-grey-10 u-grey-10 u-input u-input-rectangle u-radius-10 u-input-7" required="required">
               <option value="Seleziona" selected disabled hidden>Seleziona</option>
-              <option value="25">25</option>
-              <option value="30">30</option>
-              <option value="40">40</option>
-              <option value="50">50</option>
-              <option value="70">70</option>
-              <option value="100">100</option>
-              <option value="150">150</option>
-              <option value="176">> 175</option>
+              <option value="25">25 cm</option>
+              <option value="30">30 cm</option>
+              <option value="40">40 cm</option>
+              <option value="50">50 cm</option>
+              <option value="70">70 cm</option>
+              <option value="100">100 cm</option>
+              <option value="150">150 cm</option>
+              <option value="176">> 175 cm</option>
             </select>
             <svg class="u-caret u-caret-svg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 16 16" style="fill:currentColor;" xml:space="preserve">
               <polygon class="st0" points="8,12 2,4 14,4 "></polygon>
@@ -99,13 +99,13 @@
           <div class="u-form-select-wrapper">
             <select id="select-e411" name="distanzaOrizzontale" class="u-border-2 u-border-grey-10 u-grey-10 u-input u-input-rectangle u-radius-10 u-input-7" required="required">
               <option value="Seleziona" selected disabled hidden>Seleziona</option>
-              <option value="25">25</option>
-              <option value="30">30</option>
-              <option value="40">40</option>
-              <option value="50">50</option>
-              <option value="55">55</option>
-              <option value="60">60</option>
-              <option value="64">> 63</option>
+              <option value="25">25 cm</option>
+              <option value="30">30 cm</option>
+              <option value="40">40 cm</option>
+              <option value="50">50 cm</option>
+              <option value="55">55 cm</option>
+              <option value="60">60 cm</option>
+              <option value="64">> 63 cm</option>
             </select>
             <svg class="u-caret u-caret-svg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="16px" height="16px" viewBox="0 0 16 16" style="fill:currentColor;" xml:space="preserve">
               <polygon class="st0" points="8,12 2,4 14,4 "></polygon>
@@ -148,7 +148,7 @@
           <div class="u-form-select-wrapper">
             <select id="select-bebc" name="frequenza" class="u-border-2 u-border-grey-10 u-grey-10 u-input u-input-rectangle u-radius-10 u-input-8" required="required">
               <option value="Seleziona" selected disabled hidden>Seleziona</option>
-              <option value="0.2">0.20 gesti/minuto</option>
+              <option value="0.2">0.2 gesti/minuto</option>
               <option value="1">1 gesti/minuto</option>
               <option value="4">4 gesti/minuto</option>
               <option value="6">6 gesti/minuto</option>
